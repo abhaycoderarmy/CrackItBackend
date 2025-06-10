@@ -29,15 +29,21 @@ app.use(cookieParser());
 //     ],
 //     credentials: true
 // }
-const corsOptions = {
-    // origin: [
-    //     // 'http://localhost:5173',
-    //     // 'https://crack-it-frontend-one.vercel.app',
-    //     // 'https://crack-it-frontend-hhvziuek8-abhaycoderarmys-projects.vercel.app',
-    //     // 'https://crack-it-frontend-git-main-abhaycoderarmys-projects.vercel.app'
-    // ],
+const allowedOrigins = [
+    'http://localhost:5173',
+    'https://crack-it-frontend-one.vercel.app',
+    'https://crack-it-frontend-git-main-abhaycoderarmys-projects.vercel.app'
+];
 
-    origin: "*",
+const corsOptions = {
+    origin: function (origin, callback) {
+        if (!origin) return callback(null, true); // allow non-browser requests like Postman
+        if (allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error(`CORS policy does not allow access from origin ${origin}`));
+        }
+    },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS']
 };
