@@ -8,6 +8,9 @@ const isAuthenticated = async (req, res, next) => {
   try {
     // 1. Try to get token from cookies
     let token = req.cookies?.token;
+    console.log("Cookies:", req.cookies);
+    console.log("Auth Header:", req.headers.authorization || req.headers.Authorization);
+
 
     // 2. If no token in cookies, check Authorization header "Bearer <token>"
     if (!token) {

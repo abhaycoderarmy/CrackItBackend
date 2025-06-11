@@ -61,7 +61,7 @@ router.get('/job-management', getAdminJobManagement);
 
 // Email route
 router.post('/send-email', sendEmail);
-router.get('/own-jobs', isAuthenticated, isAdmin, getAdminOwnJobs);
-router.get('/jobs', isAuthenticated, isAdmin, getAllJobs);
+router.get('/own-jobs', isAdmin, getAdminOwnJobs);
+router.get('/jobs',  isAdmin, getAllJobs);
 
 export default router;
